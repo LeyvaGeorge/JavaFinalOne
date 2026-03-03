@@ -68,10 +68,13 @@ public class VehicleManager {
             System.out.println("No vehicles to display");
             return;
         }
+        System.out.println("\nVehicles in the manager:");
+        int index = 0; 
         for (Automobile vehicle : this.vehicles) {
             //getAutoInfo returns an array of strings with the vehicle's attributes, which we can then print out in a readable format
             String[] info = vehicle.getAutoInfo();
-            System.out.println("Make: " + info[0] + ", Model: " + info[1] + "\nColor: " + info[2] + ", Year: " + info[3] + ", Mileage: " + info[4]);
+            System.out.println(index + ". Make: " + info[0] + ", Model: " + info[1] + "\n\tColor: " + info[2] + ", Year: " + info[3] + ", Mileage: " + info[4]);
+            index++;
         }
     }
 }
