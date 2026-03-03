@@ -77,4 +77,8 @@ public class VehicleManager {
             index++;
         }
     }
+
+    public ArrayList<Automobile> getVehicles() {
+        return this.vehicles;
+    }
 }

@@ -1,5 +1,8 @@
 package FinalProject;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class Main {
 
@@ -42,6 +45,31 @@ public class Main {
         manager.updateVehicleAttributes(index, make, model, color, year, mileage);
     }
 
+    public static void printToFile(VehicleManager manager) {
+        try{
+            //create a txt file
+            File file1 = new File("Autos.txt");
+            //create a file writer class
+            
+            FileWriter writer = new FileWriter(file1);
+            //create a print writer class
+            PrintWriter printWriter = new PrintWriter(writer);
+    
+            printWriter.write("Vehicles in the manager:\n");
+            int index = 0;
+            for (Automobile vehicle : manager.getVehicles()) {
+                String[] info = vehicle.getAutoInfo();
+                printWriter.write(index + ". Make: " + info[0] + ", Model: " + info[1] + "\n\tColor: " + info[2] + ", Year: " + info[3] + ", Mileage: " + info[4] + "\n");
+                index++;
+            }
+            printWriter.close();
+        } catch (Exception e) {
+             System.out.println("An error occurred while writing to the file.");
+             System.out.println(e.getMessage());
+             return;
+         }
+         System.out.println("Vehicle information printed to file successfully.");
+    }
     public static void main(String[] args) {
         VehicleManager manager = new VehicleManager();
         Scanner scanner = new Scanner(System.in);
@@ -51,22 +79,25 @@ public class Main {
         Automobile OldBlue = new Automobile("Ford", "F-150", "Blue", 2005, 150000);
         Automobile Frank = new Automobile("Honda", "Civic", "Black", 2015, 90000);
         Automobile Bertha = new Automobile("Chevrolet", "Impala", "White", 2000, 200000);
+        Automobile Scion = new Automobile("Scion", "tC", "Silver", 2008, 150000);
 
         // Add vehicles to the manager
         manager.addVehicle(Betsy);
         manager.addVehicle(OldBlue);
         manager.addVehicle(Frank);
         manager.addVehicle(Bertha);
+        manager.addVehicle(Scion);
 
         System.out.println("\nIWelcome to the Vehicle Manager!");
         int choice = 0;
-        while (choice != 5) {
+        while (choice != 6) {
             System.out.println("\nPlease select an option:");
             System.out.println("1. Display all vehicles");
             System.out.println("2. Add a new vehicle");
             System.out.println("3. Remove a vehicle");
             System.out.println("4. Update a vehicle's attributes");
-            System.out.println("5. Exit\n");
+            System.out.println("5. Print vehicle information to file");
+            System.out.println("6. Exit\n");
 
             // Get user input for choice and handle the options accordingly
             System.out.print("Enter your choice: ");
@@ -79,14 +110,26 @@ public class Main {
                     break;
                 case 2:
                     addNewVehicle(manager, scanner);
+                    manager.displayVehicles();
                     break;
                 case 3:
                     removeVehicle(manager, scanner);
                     break;
                 case 4:
                     updateVehicle(manager, scanner);
+                    manager.displayVehicles();
                     break;
                 case 5:
+                    System.out.println("Do you wish to print the vehicle information to a file? (Y/N)");
+                    String printChoice = scanner.next();
+                    if (printChoice.equalsIgnoreCase("Y")) {
+                        System.out.println("Printing vehicle information to file...");
+                        printToFile(manager);
+                    } else {
+                        System.out.println("Print to file cancelled.");
+                    }
+                    break;
+                case 6:
                     System.out.println("Exiting the Vehicle Manager. Goodbye!");
                     break;
                 default:
