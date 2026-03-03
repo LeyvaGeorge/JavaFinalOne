@@ -40,6 +40,10 @@ public class Automobile {
     public void updateMake(String make) {
         this.make = make;
     }
+    public String getMake() {
+        return this.make;
+    }
+
     public void updateModel(String model) {
         this.model = model;
     }
