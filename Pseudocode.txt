@@ -1,0 +1,76 @@
+# Automoble class
+=Atributes=
+String make;
+String model;
+String color;
+int year;
+int mileage;
+
+Constructor default & W/Arguments
+
+=Methods=
+getAutoInfo()
+
+setters and getters for
+make()
+model()
+color()
+year()
+mileage()
+
+# VehicleManager class
+=Atributes=
+ArrayList of class Automobile
+
+Default constructor
+
+=Methods=
+addVehicle(Automobile vehicle)
+
+removeVehicle(int vehicleIndex)
+
+updateVehicleAttributes(int vehicleIndex, string make, string model, string color, int year, int mileage)
+
+displayVehicles()
+
+getVehicles()
+
+
+# Main class
+addNewVehicle(VehicleManager, Scanner)
+    Ask for all attributes (make,model,color,year,mileage)
+    instatiate new Automobile
+    addVehicle to VehicleManager(make,model,color,year,mileage)
+
+removeVehicle(VehicleManager, Scanner)
+    Ask for index of Vehicle to be removed
+    removeVehicle from VehicleManager
+
+updateVehicle(VehicleManager, Scanner)
+    ask for index of Vehicle to change
+    Ask for all attributes of vehicle to update(make, model,color,year, mileage)
+    updateVehicleAttributes(index,make,model,color,year,mileage)
+
+printToFile(VehicleManager)
+    create new file to save onto
+    create fileWriter
+    write to file
+        loop all vehicle to file
+    close fileWriter
+
+=====MAIN=====
+create new vehicleManager array
+Create new scanner
+
+Create/Add 5 automobiles to add to array
+
+-- Start of Program --
+while loop for to ask for 6 choices
+    case 1 displayVehicles()
+    case 2 addVehicles() + displayVehicles()
+    case 3 removeVehicle() + displayVehicles()
+    case 4 updateVehicle() + displayVehicles()
+    case 5 printToFile()
+    case 6 Exit Program
+    default Invalid choice
+    close scanner
