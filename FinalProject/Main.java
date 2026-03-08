@@ -114,6 +114,7 @@ public class Main {
                     break;
                 case 3:
                     removeVehicle(manager, scanner);
+                    manager.displayVehicles();
                     break;
                 case 4:
                     updateVehicle(manager, scanner);
